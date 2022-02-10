@@ -1,0 +1,25 @@
+{
+    "name": "scripts",
+    "version": "1.0.0",
+    "description": "Scripts for deployment of ready to fly app",
+    "main": "deploy.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prettier": "prettier --write \"**/*.{html,js,json,md,xml,yaml,yml}\""
+    },
+    "author": "",
+    "license": "CC0 1.0 Universal",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "enquirer": "^2.3.6",
+        "haikunator": "^2.1.2",
+        "lookpath": "^1.2.2",
+        "shelljs": "^0.8.4",
+        "wrap-ansi": "^7.0.0",
+        "node-forge": "^0.10.0",
+        "fs-extra": "^10.0.0"
+    },
+    "devDependencies": {
+        "prettier": "^2.5.1"
+    }
+}

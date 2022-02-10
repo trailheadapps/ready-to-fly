@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>{USEREMAIL}</contactEmail>
+    <description>Connected App for Slack App Hosted On Heroku</description>
+    <label>Connected App For Slack</label>
+    <logoUrl
+    >https://c1.sfdcstatic.com/content/dam/sfdc-docs/www/logos/salesforce-logo-cloud.png</logoUrl>
+    <oauthConfig>
+        <callbackUrl
+        >https://{HEROKUINSTANCE}.herokuapp.com/oauthcallback</callbackUrl>
+        <consumerKey>{CONSUMERKEY}</consumerKey>
+        <certificate>{CERTIFICATE}</certificate>
+        <consumerSecret>{SECRET}</consumerSecret>
+        <scopes>Basic</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>OpenID</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+    </oauthConfig>
+    <oauthPolicy>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <permissionSetName>Ready to Fly Admin</permissionSetName>
+</ConnectedApp>

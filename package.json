@@ -1,0 +1,33 @@
+{
+    "name": "salesforce-app",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Salesforce App",
+    "scripts": {
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "postinstall": "lerna exec -- npm install && husky install",
+        "precommit": "lint-staged",
+        "lint": "lerna exec -- npm run lint"
+    },
+    "devDependencies": {
+        "@prettier/plugin-xml": "^1.2.0",
+        "@salesforce/eslint-plugin-lightning": "^1.0.0",
+        "eslint": "^8.8.0",
+        "eslint-plugin-import": "^2.25.4",
+        "husky": "^7.0.0",
+        "lerna": "^4.0.0",
+        "lint-staged": "^12.1.6",
+        "prettier": "^2.5.1",
+        "prettier-plugin-apex": "^1.10.0"
+    },
+    "lint-staged": {
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+            "prettier --write"
+        ]
+    },
+    "volta": {
+        "node": "14.17.3",
+        "npm": "6.14.13"
+    }
+}
