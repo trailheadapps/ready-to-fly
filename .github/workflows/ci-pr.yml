@@ -102,7 +102,7 @@ jobs:
 
             # Assign permissionset
             - name: 'Assign permissionset to default user'
-              run: sfdx force:user:permset:assign -n ready-to-fly
+              run: sfdx force:user:permset:assign -n Ready_to_Fly
 
             # Import sample data
             - name: 'Import sample data'
