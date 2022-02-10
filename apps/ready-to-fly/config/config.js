@@ -20,7 +20,7 @@ requiredEnvVars.forEach((envVar) => {
     }
 });
 
-const defaultSalesforceApiVersion = '53.0';
+const defaultSalesforceApiVersion = '54.0';
 
 const salesforce = {
     clientId: process.env.SF_CLIENT_ID,
