@@ -10,6 +10,7 @@ const requiredEnvVars = [
     'SF_LOGIN_URL',
     'SF_USERNAME',
     'AES_KEY',
+    'HMAC_KEY',
     'SLACK_BOT_TOKEN',
     'SLACK_SIGNING_SECRET'
 ];
