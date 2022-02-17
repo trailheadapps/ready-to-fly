@@ -45,9 +45,9 @@ const salesforceMessageHandler = async (req, res) => {
         case 'Approved':
             await _postMessage(
                 message.userId,
-                `Your travel request <${message.instanceUrl}/${
-                    message.id
-                }|${message.name}> has been approved ${Md.emoji(
+                `Your travel request <${message.instanceUrl}/${message.id}|${
+                    message.name
+                }> has been approved ${Md.emoji(
                     'tada'
                 )}. Pack your bags and get started!!!`
             );
