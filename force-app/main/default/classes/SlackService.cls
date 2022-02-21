@@ -45,7 +45,7 @@ public class SlackService {
         );
 
         HttpRequest request = new HttpRequest();
-        request.setEndpoint(record.URL__c + 'salesforce/message');
+        request.setEndpoint(record.URL__c + '/salesforce/message');
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json;charset=UTF-8');
         request.setHeader(
