@@ -13,7 +13,7 @@
         >https://{HEROKUINSTANCE}.herokuapp.com/</value>
     </values>
     <values>
-        <field>URL__c</field>
+        <field>HMACKey__c</field>
         <value xsi:type="xsd:string">{HMACKEY}</value>
     </values>
 </CustomMetadata>

@@ -43,7 +43,7 @@ const setupScratchOrg = () => {
         )
     );
 
-    if (!deployResult.result) {
+    if (deployResult.result.error) {
         throw new Error(
             'Source deployment failed ' + JSON.stringify(deployResult)
         );
@@ -58,8 +58,8 @@ const setupScratchOrg = () => {
     );
 
     if (!assignPermissionset.result.successes) {
-        throw new Error(
-            'Permission set assignment failed ' +
+        console.error(
+            'Permission set assignment failed - try again later: ' +
                 JSON.stringify(assignPermissionset)
         );
     }
@@ -73,8 +73,9 @@ const setupScratchOrg = () => {
     );
 
     if (!loadSampleData.result.success) {
-        throw new Error(
-            'Sample data load failed ' + JSON.stringify(loadSampleData)
+        console.error(
+            'Sample data load failed - try again later: ' +
+                JSON.stringify(loadSampleData)
         );
     }
 

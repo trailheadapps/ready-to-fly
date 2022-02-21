@@ -2,7 +2,6 @@
 const sh = require('shelljs');
 const chalk = require('chalk');
 const fs = require('fs');
-const forge = require('node-forge');
 const log = console.log;
 const { getRandomString } = require('./util');
 
@@ -27,7 +26,9 @@ const setupHerokuApp = () => {
     if (appNameCheck.stdout.includes(sh.env.HEROKU_APP_NAME)) {
         throw new Error(`App name already in use: ${sh.env.HEROKU_APP_NAME}`);
     }
-    sh.cd('apps/ready-to-fly');
+
+    const appBase = 'apps/ready-to-fly';
+    sh.cd(appBase);
 
     log(`*** Creating Heroku app ${chalk.bold(sh.env.HEROKU_APP_NAME)}`);
     const appData = JSON.parse(
@@ -39,7 +40,6 @@ const setupHerokuApp = () => {
     sh.env.HEROKU_APP_NAME = appData.name;
     sh.env.HEROKU_URL = appData.web_url;
     sh.env.AES_KEY = getRandomString(32);
-    sh.env.HMAC_KEY = getRandomString(32);
 
     log('*** Adding Node.js Buildpack');
     sh.exec(
@@ -50,8 +50,8 @@ const setupHerokuApp = () => {
     );
 
     log('*** Writing .env file for local development');
-    fs.writeFileSync('apps/ready-to-fly/.env', ''); // empty the .env file for fresh write
-    const stream = fs.createWriteStream('apps/ready-to-fly/.env', {
+    fs.writeFileSync(`../../${appBase}/.env`, ''); // empty the .env file for fresh write
+    const stream = fs.createWriteStream(`../../${appBase}/.env`, {
         flags: 'a'
     });
     // env variables for Slack Auth
@@ -81,8 +81,9 @@ const setupHerokuApp = () => {
         `heroku config:set PRIVATE_KEY="${sh.env.PRIVATE_KEY}" -a ${sh.env.HEROKU_APP_NAME}`,
         { silent: true }
     );
+    // Needed by buildpack
     sh.exec(
-        `heroku config:set APP_BASE=apps/ready-to-fly -a ${sh.env.HEROKU_APP_NAME}`
+        `heroku config:set APP_BASE=${appBase} -a ${sh.env.HEROKU_APP_NAME}`
     );
     sh.exec(
         `heroku config:set SF_USERNAME=${sh.env.SF_USERNAME} -a ${sh.env.HEROKU_APP_NAME}`
