@@ -43,7 +43,7 @@ const setupScratchOrg = () => {
         )
     );
 
-    if (deployResult.result.error) {
+    if (!deployResult.result || deployResult.result.error) {
         throw new Error(
             'Source deployment failed ' + JSON.stringify(deployResult)
         );

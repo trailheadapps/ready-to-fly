@@ -69,17 +69,13 @@ const fetchOAuthToken = async (req, res) => {
 };
 
 const _requestAccessAndRefreshTokens = async (code) => {
-    const redirectHost = config.slack.socketMode
-        ? 'http://localhost:3000'
-        : config.salesforce.herokuUrl;
-    const redirectUri = `${redirectHost}/oauthcallback`;
     // You can change loginUrl to connect to sandbox or prerelease env
     const connection = new jsforce.Connection({
         oauth2: new jsforce.OAuth2({
             loginUrl: config.salesforce.loginUrl,
             clientId: config.salesforce.clientId,
             clientSecret: config.salesforce.clientSecret,
-            redirectUri: redirectUri
+            redirectUri: `${config.salesforce.herokuUrl}/oauthcallback`
         }),
         version: config.salesforce.apiVersion
     });

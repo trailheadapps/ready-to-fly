@@ -6,8 +6,8 @@
     <logoUrl
     >https://c1.sfdcstatic.com/content/dam/sfdc-docs/www/logos/salesforce-logo-cloud.png</logoUrl>
     <oauthConfig>
-        <callbackUrl>https://{HEROKUINSTANCE}.herokuapp.com/oauthcallback
-http://localhost:3000/oauthcallback</callbackUrl>
+        <callbackUrl
+        >https://{HEROKUINSTANCE}.herokuapp.com/oauthcallback</callbackUrl>
         <consumerKey>{CONSUMERKEY}</consumerKey>
         <certificate>{CERTIFICATE}</certificate>
         <consumerSecret>{SECRET}</consumerSecret>
