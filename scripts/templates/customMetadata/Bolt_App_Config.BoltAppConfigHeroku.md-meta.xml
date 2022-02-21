@@ -10,7 +10,7 @@
         <field>URL__c</field>
         <value
             xsi:type="xsd:string"
-        >https://{HEROKUINSTANCE}.herokuapp.com/</value>
+        >https://{HEROKUINSTANCE}.herokuapp.com</value>
     </values>
     <values>
         <field>HMACKey__c</field>
