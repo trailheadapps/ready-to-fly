@@ -23,7 +23,7 @@ public class SlackService {
         if (config == null) {
             if (Test.isRunningTest()) {
                 return new Bolt_App_Config__mdt(
-                    URL__c = 'http://fakeslackendpoint.com/',
+                    URL__c = 'http://fakeslackendpoint.com',
                     HMACKey__c = 'AKeCiu6WIcy1YtbTnvtEULZraPEuBFQh'
                 );
             } else {

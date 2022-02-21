@@ -71,19 +71,35 @@ This is the last step, you will need to enter the current Heroku Instance url in
 
 ## Local Development
 
--   For local Development, first make sure to deploy the app on Heroku as listed in the section above.
--   Authenticate to Salesforce from the app home page by clicking on `Authorize with Salesforce` button.
--   Once successfully authenticated, perform the steps below:
-    1.  Navigate to [config file](apps/ready-to-fly/config/config.js), and enable socket mode by uncommenting the socketMode and appToken in config file.
-        `const slack = { ...... port: process.env.PORT || 3000, socketMode: true, appToken: process.env.SLACK_APP_TOKEN };`
-    2.  Generate an App Level Token in the Slack App by navigating to your Slack app at api.slack.com and scrolling to the section App-Level Tokens
-    3.  Populate the .env file with `SLACK_APP_TOKEN` variable obtained in previous step
-    4.  Comment out both `request_url` lines in the slack app's _App Manifest_, and also set the `socket_mode_enabled` to **true**. Do this via the apps configuration page from [this list](https://api.slack.com/apps), click _App Manifest_ menu item for your app.
-    5.  cd into apps/ready-to-fly folder `cd apps/ready-to-fly`
-    6.  Run `npm install`
-    7.  Run `node app.js`
+1. To use ngrok, first install it downloading the executable or with npm:
 
-At this point you should see the Node.js app recieving events from Slack directly in VSCode terminal.
+```console
+$ npm install ngrok -g
+```
+
+1. Next you’ll have to [sign up](https://dashboard.ngrok.com/get-started/setup).
+1. Once logged in, navigate to “Setup & Installation“ and copy your auth token.
+1. Then set your auth token in your local machine:
+
+```console
+$ ngrok authtoken my_auth_token
+```
+
+1. Run the ngrok tunnel as follows:
+
+```console
+$ ngrok http 3000
+```
+
+1. Copy the ngrok tunnel URL to the following places:
+
+-   Your manifest file request URLs
+-   The HEROKU_URL environment variable in your .env file
+-   The Callback URL for the connected app that’s used for authorization in Salesforce - simply add the ngrok URL in a new line
+-   Add a new remote site setting that contains the ngrok URL, as it’s the one that we’ll use to callout from Salesforce to Slack
+-   Modify the BoltAppConfigHeroku custom metadata type record URL\_\_c, as it’s used in the Apex logic to make the callout
+
+1. Now you are prepared to run the app locally! In another terminal different from the one in which you’re running ngrok, execute `node app.js` from the project folder. You can then make changes to the code and restart the app as many times as you want.
 
 ### Note about Managers
 

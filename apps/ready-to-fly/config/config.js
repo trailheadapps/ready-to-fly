@@ -33,16 +33,11 @@ const salesforce = {
     apiVersion: process.env.SF_API_VERSION || defaultSalesforceApiVersion
 };
 
-// For Local Development using Socket Mode uncomment socketMode and appToken
-// Also make sure in your Slack app at api.slack.com, socketMode is enabled
-// and you have created an App Token
 const slack = {
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
     port: process.env.PORT || 3000,
     aesKey: process.env.AES_KEY
-    //socketMode: true,
-    //appToken: process.env.SLACK_APP_TOKEN,
 };
 
 module.exports = {
