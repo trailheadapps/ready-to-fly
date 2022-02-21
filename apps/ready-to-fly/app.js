@@ -44,7 +44,6 @@ const receiver = new ExpressReceiver({
 // Initializes your app with your bot token and signing secret
 const boltApp = new App({
     ...config.slack,
-    //customRoutes: registerCustomRoutes(),
     logLevel,
     receiver
 });

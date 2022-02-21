@@ -5,7 +5,7 @@ const travelRequestSuccess = () => {
     return Modal({ title: 'Ready to Fly', close: 'Close' })
         .blocks(
             Blocks.Section({
-                text: `travel request successfully created ${Md.emoji(
+                text: `Travel request successfully created ${Md.emoji(
                     'tada'
                 )}!!!`
             })

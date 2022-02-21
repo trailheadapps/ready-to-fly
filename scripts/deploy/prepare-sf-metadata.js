@@ -2,7 +2,7 @@ const forge = require('node-forge');
 const sh = require('shelljs');
 const fse = require('fs-extra');
 const log = console.log;
-
+const { getRandomString } = require('./util');
 const { getRandomNumber } = require('./util');
 const { getSelfSignedCertificate } = require('./generate-self-signed-cert');
 
@@ -11,6 +11,9 @@ const sfProjectFolder = 'force-app/main/default';
 
 const prepareSfMetadata = async (pubkey) => {
     log('*** Preparing Salesforce metadata');
+
+    sh.env.HMAC_KEY = getRandomString(32);
+
     fse.copySync(templateDir, sfProjectFolder, { overwrite: true });
     sh.sed(
         '-i',

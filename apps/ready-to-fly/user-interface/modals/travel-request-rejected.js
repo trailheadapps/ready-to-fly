@@ -5,7 +5,7 @@ const travelRequestRejected = () => {
     return Modal({ title: 'Ready to Fly', close: 'Close' })
         .blocks(
             Blocks.Section({
-                text: 'travel request successfully rejected'
+                text: 'Travel request successfully rejected'
             })
         )
         .buildToJSON();

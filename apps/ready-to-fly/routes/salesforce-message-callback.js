@@ -1,5 +1,4 @@
 'use strict';
-const getRawBody = require('raw-body');
 const CryptoJS = require('crypto-js');
 const persistedClient = require('../store/bolt-web-client');
 const {
@@ -10,7 +9,7 @@ const { authWithSalesforce } = require('../middleware/salesforce-auth');
 const config = require('../config/config');
 
 const salesforceMessageHandler = async (req, res) => {
-    // Note:if using HTTPReceiver instead of ExpressReceiver, compute the body as follows:
+    // Note:if using HTTPReceiver instead of ExpressReceiver, compute the body with raw-body as follows:
     // const rawBody = await getRawBody(req);
     // const body = JSON.parse(rawBody.toString());
 
@@ -31,47 +30,40 @@ const salesforceMessageHandler = async (req, res) => {
         return;
     }
 
-    // Force execution of auth middleware to make sure
-    // the user we'll post a message to is authenticated
+    // We can ensure the user is authorized because it was checked
+    // in Salesforce before sending the message,
+    // and we verified the HMAC on receival
     const message = req.body[0];
-    const context = await authWithSalesforce({ slackUserId: message.userId });
-    if (context.hasAuthorized) {
-        // Post to Slack
-        switch (message.status) {
-            case 'New':
-                await _postNewTravelRequestToReviewMessage(
-                    message.userId,
-                    _convertMessageToTravelRequestObject(message),
-                    message.instanceUrl
-                );
-                break;
-            case 'Approved':
-                await _postMessage(
-                    message.userId,
-                    `Your travel request <${message.instanceUrl}/${
-                        message.id
-                    }|${message.name}> has been approved ${Md.emoji(
-                        'tada'
-                    )}. Pack your bags and get started!!!`
-                );
-                break;
-            case 'Rejected':
-                await _postMessage(
-                    message.userId,
-                    `Ops! Your travel request <${message.instanceUrl}/${message.id}|${message.name}> has been rejected.`
-                );
-                break;
-            default:
-                break;
-        }
-        // Send success message
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end('Message posted successfully');
-    } else {
-        // Respond with error
-        res.writeHead(403);
-        res.end('Slack user is not authorized with Salesforce', 'utf-8');
+    switch (message.status) {
+        case 'New':
+            await _postNewTravelRequestToReviewMessage(
+                message.userId,
+                _convertMessageToTravelRequestObject(message),
+                message.instanceUrl
+            );
+            break;
+        case 'Approved':
+            await _postMessage(
+                message.userId,
+                `Your travel request <${message.instanceUrl}/${message.id}|${
+                    message.name
+                }> has been approved ${Md.emoji(
+                    'tada'
+                )}. Pack your bags and get started!!!`
+            );
+            break;
+        case 'Rejected':
+            await _postMessage(
+                message.userId,
+                `Ops! Your travel request <${message.instanceUrl}/${message.id}|${message.name}> has been rejected.`
+            );
+            break;
+        default:
+            break;
     }
+    // Send success message
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Message posted successfully');
 };
 
 const _postMessage = async (userId, message) => {
