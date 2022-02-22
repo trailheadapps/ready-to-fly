@@ -38,7 +38,10 @@ const setupHerokuApp = () => {
         )
     );
     sh.env.HEROKU_APP_NAME = appData.name;
-    sh.env.HEROKU_URL = appData.web_url;
+    sh.env.HEROKU_URL = appData.web_url.substring(
+        0,
+        appData.web_url.length - 1
+    ); // Remove final slash
     sh.env.AES_KEY = getRandomString(32);
 
     log('*** Adding Node.js Buildpack');
