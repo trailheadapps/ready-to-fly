@@ -50,8 +50,8 @@ const setupHerokuApp = () => {
     );
 
     log('*** Writing .env file for local development');
-    fs.writeFileSync(`../../${appBase}/.env`, ''); // empty the .env file for fresh write
-    const stream = fs.createWriteStream(`../../${appBase}/.env`, {
+    fs.writeFileSync('.env', ''); // empty the .env file for fresh write
+    const stream = fs.createWriteStream('.env', {
         flags: 'a'
     });
     // env variables for Slack Auth
