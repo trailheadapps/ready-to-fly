@@ -38,7 +38,10 @@ const setupHerokuApp = () => {
         )
     );
     sh.env.HEROKU_APP_NAME = appData.name;
-    sh.env.HEROKU_URL = appData.web_url;
+    sh.env.HEROKU_URL = appData.web_url.substring(
+        0,
+        appData.web_url.length - 1
+    ); // Remove final slash
     sh.env.AES_KEY = getRandomString(32);
 
     log('*** Adding Node.js Buildpack');
@@ -50,30 +53,34 @@ const setupHerokuApp = () => {
     );
 
     log('*** Writing .env file for local development');
-    fs.writeFileSync(`../../${appBase}/.env`, ''); // empty the .env file for fresh write
-    const stream = fs.createWriteStream(`../../${appBase}/.env`, {
-        flags: 'a'
-    });
-    // env variables for Slack Auth
-    stream.write(
+    // Env variables for Slack Auth
+    fs.writeFileSync('.env', ''); // empty the .env file for fresh write
+    fs.appendFileSync(
+        '.env',
         'SLACK_SIGNING_SECRET=' + sh.env.SLACK_SIGNING_SECRET + '\r\n'
     );
-    stream.write('SLACK_BOT_TOKEN=' + sh.env.SLACK_BOT_TOKEN + '\r\n');
+    fs.appendFileSync(
+        '.env',
+        'SLACK_BOT_TOKEN=' + sh.env.SLACK_BOT_TOKEN + '\r\n'
+    );
     // env variables for Salesforce Auth
-    stream.write('SF_USERNAME=' + sh.env.SF_USERNAME + '\r\n');
-    stream.write('SF_LOGIN_URL=' + sh.env.SF_LOGIN_URL + '\r\n');
-    stream.write('HEROKU_URL=' + sh.env.HEROKU_URL + '\r\n');
-    stream.write('SF_CLIENT_ID=' + sh.env.CONSUMERKEY + '\r\n');
-    stream.write('SF_CLIENT_SECRET=' + sh.env.SF_CLIENT_SECRET + '\r\n');
-    stream.write('AES_KEY=' + sh.env.AES_KEY + '\r\n');
-    stream.write('HMAC_KEY=' + sh.env.HMAC_KEY + '\r\n');
-    stream.write(
+    fs.appendFileSync('.env', 'SF_USERNAME=' + sh.env.SF_USERNAME + '\r\n');
+    fs.appendFileSync('.env', 'SF_LOGIN_URL=' + sh.env.SF_LOGIN_URL + '\r\n');
+    fs.appendFileSync('.env', 'HEROKU_URL=' + sh.env.HEROKU_URL + '\r\n');
+    fs.appendFileSync('.env', 'SF_CLIENT_ID=' + sh.env.CONSUMERKEY + '\r\n');
+    fs.appendFileSync(
+        '.env',
+        'SF_CLIENT_SECRET=' + sh.env.SF_CLIENT_SECRET + '\r\n'
+    );
+    fs.appendFileSync('.env', 'AES_KEY=' + sh.env.AES_KEY + '\r\n');
+    fs.appendFileSync('.env', 'HMAC_KEY=' + sh.env.HMAC_KEY + '\r\n');
+    fs.appendFileSync(
+        '.env',
         'PRIVATE_KEY=' +
             '"' +
             sh.env.PRIVATE_KEY.replace(/(\r\n|\r|\n)/g, '\\n') +
             '"'
     );
-    stream.close();
 
     log('*** Pushing app to Heroku');
     log('*** Setting remote configuration parameters');

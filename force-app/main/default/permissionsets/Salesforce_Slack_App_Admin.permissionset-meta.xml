@@ -18,8 +18,4 @@
         <object>Slack_Authentication__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewEncryptedData</name>
-    </userPermissions>
 </PermissionSet>

@@ -77,21 +77,21 @@ This is the last step, you will need to enter the current Heroku Instance url in
 $ npm install ngrok -g
 ```
 
-1. Next you’ll have to [sign up](https://dashboard.ngrok.com/get-started/setup).
-1. Once logged in, navigate to “Setup & Installation“ and copy your auth token.
-1. Then set your auth token in your local machine:
+2. Next you’ll have to [sign up](https://dashboard.ngrok.com/get-started/setup).
+3. Once logged in, navigate to “Setup & Installation“ and copy your auth token.
+4. Then set your auth token in your local machine:
 
 ```console
 $ ngrok authtoken my_auth_token
 ```
 
-1. Run the ngrok tunnel as follows:
+5. Run the ngrok tunnel as follows:
 
 ```console
 $ ngrok http 3000
 ```
 
-1. Copy the ngrok tunnel URL to the following places:
+6. Copy the ngrok tunnel URL to the following places:
 
 -   Your manifest file request URLs
 -   The HEROKU_URL environment variable in your .env file
@@ -99,7 +99,7 @@ $ ngrok http 3000
 -   Add a new remote site setting that contains the ngrok URL, as it’s the one that we’ll use to callout from Salesforce to Slack
 -   Modify the BoltAppConfigHeroku custom metadata type record URL\_\_c, as it’s used in the Apex logic to make the callout
 
-1. Now you are prepared to run the app locally! In another terminal different from the one in which you’re running ngrok, execute `node app.js` from the project folder. You can then make changes to the code and restart the app as many times as you want.
+7. Now you are prepared to run the app locally! In another terminal different from the one in which you’re running ngrok, execute `node app.js` from the project folder. You can then make changes to the code and restart the app as many times as you want.
 
 ### Note about Managers
 
