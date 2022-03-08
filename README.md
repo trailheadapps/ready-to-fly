@@ -15,8 +15,8 @@ To be able to run this project you will need:
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   Salesforce Dev Hub
-    - If you don't have one, [sign up](https://developer.salesforce.com/signup) for a free Developer Edition org.
-    - If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
+    -   If you don't have one, [sign up](https://developer.salesforce.com/signup) for a free Developer Edition org.
+    -   If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
 -   `sfdx` CLI >= sfdx-cli/7.129.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
 -   Heroku account ([signup](https://signup.heroku.com))
 -   `heroku` CLI (download [here](https://devcenter.heroku.com/articles/heroku-cli))
@@ -25,7 +25,7 @@ To be able to run this project you will need:
 
 ## Setup Steps
 
-###  Configuring Slack app at api.slack.com
+### Configuring Slack app at api.slack.com
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
 2. Choose the workspace you want to install the application to
@@ -38,7 +38,7 @@ To be able to run this project you will need:
 1. Authenticate to your Salesforce org and set as default:
 
 ```
-sfdx auth:web:login --setdefaultusername -a mydevorg 
+sfdx auth:web:login --setdefaultusername -a mydevorg
 ```
 
 2. Login to your Heroku Account
@@ -109,8 +109,8 @@ Note: As ready to fly performs calls from Salesforce to Slack, we've modified th
 
 This is the final step, you will need to enter the current Heroku Instance url in Slack App.
 
-1.   To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _App Manifest_. Find the `request_url` fields (there will be two to update) in the manifest and modify it to replace `heroku-app` with your actual heroku domain name. Note at the end of this step your url should look like `https://<heroku-domain>.herokuapp.com/slack/events`.
-2.   Once done that, you'll be prompted to verify the events endpoint. Click on 'verify'. You're ready to navigate to the app home!
+1.  To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _App Manifest_. Find the `request_url` fields (there will be two to update) in the manifest and modify it to replace `heroku-app` with your actual heroku domain name. Note at the end of this step your url should look like `https://<heroku-domain>.herokuapp.com/slack/events`.
+2.  Once done that, you'll be prompted to verify the events endpoint. Click on 'verify'. You're ready to navigate to the app home!
 
 ## How to Build and Deploy Code
 
@@ -120,7 +120,7 @@ This is the final step, you will need to enter the current Heroku Instance url i
 
 ### Building Salesforce App Using Non-Scratch Org
 
-- For Salesforce metadata synchronization in developer orgs use `sfdx force:source:retrieve -p force-app/main/default` to retrieve and `sfdx force:source:deploy -p force-app/main/default` to deploy metadata from orgs to local project folder `force-app`
+-   For Salesforce metadata synchronization in developer orgs use `sfdx force:source:retrieve -p force-app/main/default` to retrieve and `sfdx force:source:deploy -p force-app/main/default` to deploy metadata from orgs to local project folder `force-app`
 
 ### Building and deploying Bolt Node.js app
 
