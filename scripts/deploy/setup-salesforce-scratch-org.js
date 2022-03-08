@@ -2,11 +2,13 @@ const sh = require('shelljs');
 const chalk = require('chalk');
 const log = console.log;
 
+const { assignPermissionset, loadSampleData } = require('./util');
+
 /*
  * Create a scratch org and save user login details
  */
 
-const createScratchOrg = () => {
+const createScratchOrg = async () => {
     log('');
     log(
         `${chalk.bold('*** Setting up Salesforce App')} ${chalk.dim(
@@ -34,7 +36,7 @@ const createScratchOrg = () => {
 };
 
 // Push source to scratch org, apply permset, and load sample data
-const setupScratchOrg = () => {
+const setupScratchOrg = async () => {
     log('*** Deploying Salesforce metadata');
     const deployResult = JSON.parse(
         sh.exec(
@@ -50,34 +52,9 @@ const setupScratchOrg = () => {
     }
 
     // Assign permission set to user
-    const assignPermissionset = JSON.parse(
-        sh.exec(
-            `sfdx force:user:permset:assign --permsetname Salesforce_Slack_App_Admin,Ready_to_Fly -u ${sh.env.SF_USERNAME} --json`,
-            { silent: true }
-        )
-    );
-
-    if (!assignPermissionset.result.successes) {
-        console.error(
-            'Permission set assignment failed - try again later: ' +
-                JSON.stringify(assignPermissionset)
-        );
-    }
-
+    await assignPermissionset();
     // Load sample data
-    const loadSampleData = JSON.parse(
-        sh.exec(
-            `sfdx force:apex:execute --apexcodefile data/setup.apex -u ${sh.env.SF_USERNAME} --json`,
-            { silent: true }
-        )
-    );
-
-    if (!loadSampleData.result.success) {
-        console.error(
-            'Sample data load failed - try again later: ' +
-                JSON.stringify(loadSampleData)
-        );
-    }
+    await loadSampleData();
 
     log(chalk.green('*** ✔ Done with the Salesforce scratch org setup'));
 };
