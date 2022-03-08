@@ -29,7 +29,7 @@ To be able to run this project you will need:
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
 2. Choose the workspace you want to install the application to
-3. Copy the contents of [manifest.yml](./apps/salesforce-slack-app/manifest.YAML) into the text box that says **Paste your manifest code here** and click _Next_
+3. Copy the contents of [manifest.yml](./apps/ready-to-fly/manifest.YAML) into the text box that says **Paste your manifest code here** and click _Next_
 4. Review the configuration and click _Create_
 5. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
 6. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
