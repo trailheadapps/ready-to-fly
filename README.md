@@ -15,7 +15,7 @@ To be able to run this project you will need:
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   Salesforce Developer Org
-    -   If you don't have one, sign up for a [free Developer Edition org](<(https://developer.salesforce.com/signup)>) or a [Trailhead Playground](https://trailhead.salesforce.com/).
+    -   If you don't have one, sign up for a [free Developer Edition org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
     -   If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
 -   `sfdx` CLI >= sfdx-cli/7.129.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
 -   Heroku account ([signup](https://signup.heroku.com))
