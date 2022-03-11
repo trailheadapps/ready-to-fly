@@ -14,8 +14,8 @@ To be able to run this project you will need:
 
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
--   Salesforce Dev Hub
-    -   If you don't have one, [sign up](https://developer.salesforce.com/signup) for a free Developer Edition org.
+-   Salesforce Developer Org
+    -   If you don't have one, sign up for a [free Developer Edition org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
     -   If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
 -   `sfdx` CLI >= sfdx-cli/7.129.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
 -   Heroku account ([signup](https://signup.heroku.com))
@@ -34,7 +34,7 @@ To be able to run this project you will need:
 5. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
 6. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
 
-### Deploying the app using a Salesforce Non-scratch org and Heroku
+### Deploying the app using a Salesforce Non-scratch org (or a Trailhead Playground) and Heroku
 
 1. Authenticate to your Salesforce org and set as default:
 
