@@ -80,8 +80,6 @@ async function getUserInput() {
     const response = await userInputPrompt();
     sh.env.SF_DEV_HUB = response.devhub ?? '';
     sh.env.SF_SCRATCH_ORG = response.scratchorg ?? '';
-    sh.env.SF_LOGIN_URL =
-        response['sf-login-url'] ?? 'https://test.salesforce.com';
     sh.env.HEROKU_APP_NAME = response['heroku-app'];
     sh.env.SLACK_BOT_TOKEN = response['slack-bot-token'];
     sh.env.SLACK_SIGNING_SECRET = response['slack-signing-secret'];

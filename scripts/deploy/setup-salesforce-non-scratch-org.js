@@ -16,6 +16,22 @@ const setupNonScratchOrgUserContext = async () => {
     );
     sh.env.SF_USERNAME = userData.result.username;
     sh.env.ORGID = userData.result.id;
+    // Check if the currently authorized org is Sandbox or Production
+    const organization = JSON.parse(
+        sh.exec(
+            'sfdx force:data:soql:query -q "SELECT IsSandbox FROM Organization LIMIT 1" --json',
+            { silent: true }
+        )
+    );
+    if (organization.result.records.length > 0) {
+        if (organization.result.records[0].IsSandbox) {
+            sh.env.SF_LOGIN_URL = 'https://test.salesforce.com';
+        } else {
+            sh.env.SF_LOGIN_URL = 'https://login.salesforce.com';
+        }
+    } else {
+        sh.env.SF_LOGIN_URL = 'https://test.salesforce.com';
+    }
 };
 
 // Deploy source to non-scratch org, apply permset, and load sample data
