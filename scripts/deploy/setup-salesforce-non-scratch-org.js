@@ -4,8 +4,7 @@ const log = console.log;
 
 const { assignPermissionset, loadSampleData } = require('./util');
 
-// Push source to scratch org, apply permset, and load sample data
-const setupDefaultNonScratchOrg = async () => {
+const setupNonScratchOrgUserContext = async () => {
     log('');
     log(
         `${chalk.bold('*** Setting up Salesforce App')} ${chalk.dim(
@@ -17,6 +16,10 @@ const setupDefaultNonScratchOrg = async () => {
     );
     sh.env.SF_USERNAME = userData.result.username;
     sh.env.ORGID = userData.result.id;
+};
+
+// Deploy source to non-scratch org, apply permset, and load sample data
+const setupDefaultNonScratchOrg = async () => {
     log('*** Deploying Salesforce metadata');
     const deployResult = JSON.parse(
         sh.exec(
@@ -35,7 +38,7 @@ const setupDefaultNonScratchOrg = async () => {
     // Load sample data
     await loadSampleData();
 
-    log(chalk.green('*** ✔ Done with the Salesforce scratch org setup'));
+    log(chalk.green('*** ✔ Done with the Salesforce org setup'));
 };
 
-module.exports = { setupDefaultNonScratchOrg };
+module.exports = { setupDefaultNonScratchOrg, setupNonScratchOrgUserContext };

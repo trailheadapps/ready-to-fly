@@ -9,6 +9,7 @@ const {
     setupScratchOrg
 } = require('./deploy/setup-salesforce-scratch-org');
 const {
+    setupNonScratchOrgUserContext,
     setupDefaultNonScratchOrg
 } = require('./deploy/setup-salesforce-non-scratch-org');
 const {
@@ -52,15 +53,20 @@ sh.env.SALESFORCE_ENV_TYPE = '';
         // Ask user to input values needed for the deploy
         await getUserInput();
         log('');
-        // Salesforce Org Setup
+        // Initialize Salesforce Org
         if (sh.env.SALESFORCE_ENV_TYPE == 'Scratch Org') {
             await createScratchOrg();
+        } else {
+            await setupNonScratchOrgUserContext();
+        }
+        const resultcert = await createCertificate();
+        await prepareSfMetadata(resultcert.pubkey);
+        // Set up Salesforce Org with metadata and data
+        if (sh.env.SALESFORCE_ENV_TYPE == 'Scratch Org') {
             await setupScratchOrg();
         } else {
             await setupDefaultNonScratchOrg();
         }
-        const resultcert = await createCertificate();
-        await prepareSfMetadata(resultcert.pubkey);
         // Heroku Setup
         await setupHerokuApp();
     } catch (err) {
