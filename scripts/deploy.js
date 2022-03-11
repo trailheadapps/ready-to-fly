@@ -52,17 +52,16 @@ sh.env.SALESFORCE_ENV_TYPE = '';
         // Ask user to input values needed for the deploy
         await getUserInput();
         log('');
-        // Salesforce Setup
-        createScratchOrg();
-        const resultcert = await createCertificate();
-        await prepareSfMetadata(resultcert.pubkey);
         // Salesforce Org Setup
         if (sh.env.SALESFORCE_ENV_TYPE == 'Scratch Org') {
             await createScratchOrg();
             await setupScratchOrg();
         } else {
             await setupDefaultNonScratchOrg();
-        } // Heroku Setup
+        }
+        const resultcert = await createCertificate();
+        await prepareSfMetadata(resultcert.pubkey);
+        // Heroku Setup
         await setupHerokuApp();
     } catch (err) {
         log(chalk.bold.red(`*** ERROR: ${err}`));
