@@ -36,22 +36,22 @@ To be able to run this project you will need:
 
 ### Deploying the app using a Salesforce Non-scratch org (or a Trailhead Playground) and Heroku
 
-1. Authenticate to your Salesforce org and set as default:
+1. Clone the ready-to-fly repository
+
+```
+git clone https://github.com/trailheadapps/ready-to-fly
+```
+
+2. Authenticate to your Salesforce org and set as default:
 
 ```
 sfdx auth:web:login --setdefaultusername -a mydevorg
 ```
 
-2. Login to your Heroku Account
+3. Login to your Heroku Account
 
 ```
 heroku login
-```
-
-3. Clone the ready-to-fly repository
-
-```
-git clone https://github.com/trailheadapps/ready-to-fly
 ```
 
 4. Run Deployment Script
@@ -71,22 +71,22 @@ node scripts/deploy.js
 
 ### Deploying the app using a Salesforce scratch org and Heroku
 
-1. Authenticate to your Salesforce org that has DevHub enabled
+1. Clone the ready-to-fly repository
+
+```
+git clone https://github.com/trailheadapps/ready-to-fly
+```
+
+2. Authenticate to your Salesforce org that has DevHub enabled
 
 ```
 sfdx auth:web:login --setdefaultdevhubusername -a DevHub
 ```
 
-2. Login to your Heroku Account
+3. Login to your Heroku Account
 
 ```
 heroku login
-```
-
-3. Clone the ready-to-fly repository
-
-```
-git clone https://github.com/trailheadapps/ready-to-fly
 ```
 
 4. Run Deployment Script
