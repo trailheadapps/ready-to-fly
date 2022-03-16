@@ -2,7 +2,7 @@
 
 [![CI Workflow](https://github.com/trailheadapps/ready-to-fly/workflows/CI/badge.svg)](https://github.com/trailheadapps/ready-to-fly/actions?query=workflow%3ACI) [![codecov](https://codecov.io/gh/trailheadapps/ready-to-fly/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/ready-to-fly)
 
-<img src="/airplaneLogo.png" width=30% height=30%>
+<img src="./airplaneLogo.png" width=30% height=30%>
 
 Sample app to showcase Slack + Salesforce integrations.
 
@@ -12,24 +12,22 @@ This app has been created using the [Salesforce Slack Starter Kit](https://githu
 
 To be able to run this project you will need:
 
+-   A brand new [Trailhead Playground](https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management), or sign up for a [free Developer Edition org](https://developer.salesforce.com/signup).
+    -   Optional: If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
+-   A new Slack workspace. You will need to create this workspace through a personal Slack account. (instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace))
+-   Heroku account ([signup for free](https://signup.heroku.com))
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
--   Salesforce Developer Org
-    -   If you don't have one, sign up for a [free Developer Edition org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
-    -   If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
--   `sfdx` CLI >= sfdx-cli/7.129.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
--   Heroku account ([signup](https://signup.heroku.com))
+-   `sfdx` CLI >= sfdx-cli/7.142.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
 -   `heroku` CLI (download [here](https://devcenter.heroku.com/articles/heroku-cli))
--   Slack Workspace
-    -   If you don't have one, [create one](https://slack.com/get-started#/createnew).
 
 ## Setup Steps
 
 ### Configuring Slack app at api.slack.com
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
-2. Choose the workspace you want to install the application to
-3. Copy the contents of [manifest.yml](./apps/ready-to-fly/manifest.YAML) into the text box that says **Paste your manifest code here** and click _Next_
+2. Select the workspace you created in the Prerequisites section
+3. Copy the contents of [manifest.yml](./apps/ready-to-fly/manifest.YAML) into the text box that says **Enter app manifest below** and click _Next_
 4. Review the configuration and click _Create_
 5. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
 6. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
@@ -65,9 +63,15 @@ node scripts/deploy.js
 
 5. Choose **Non-Scratch Org** when the script prompts you to select Salesforce environment
 
-6. The script prompts you to enter value for `SLACK_BOT_TOKEN`. To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _OAuth & Permissions_ in the left hand menu, then copy the value in _Bot User OAuth Token_ and paste into terminal.
+6. Click Enter to accept the Heroku app name
 
-7. The script prompts you for slack signing secret `SLACK_SIGNING_SECRET`. To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _Basic Information_ and scroll to the section _App Credentials_ and click show button and copy the _Signing Secret_ and paste into terminal.
+7. The script prompts you to enter value for `SLACK_BOT_TOKEN`. To enter this value open your apps configuration page by first navigating to the [apps list](https://api.slack.com/apps) and then selecting the app you created in previous section, click _OAuth & Permissions_ in the left hand menu, then copy the value in _Bot User OAuth Token_ and paste into terminal.
+
+<img src="./docs/images/botToken.png" width=60% height=60% alt="Slack Bot Token" style="padding-left: 100px">
+
+8. The script prompts you for slack signing secret `SLACK_SIGNING_SECRET`. To enter this value open your apps configuration page by first navigating to the [apps list](https://api.slack.com/apps) and then selecting the app you created in previous section, click _Basic Information_ and scroll to the section _App Credentials_ and click show button and copy the _Signing Secret_ and paste into terminal.
+
+<img src="./docs/images/signingSecret.png" width=60% height=60% alt="Signing Secret" style="padding-left: 100px">
 
 ### Deploying the app using a Salesforce scratch org and Heroku
 
@@ -100,9 +104,15 @@ node scripts/deploy.js
 
 5. Choose **Scratch Org** when the script prompts you to select Salesforce environment
 
-6. The script prompts you to enter value for `SLACK_BOT_TOKEN`. To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _OAuth & Permissions_ in the left hand menu, then copy the value in _Bot User OAuth Token_ and paste into terminal.
+6. Click Enter to accept the Heroku app name
 
-7. The script prompts you for slack signing secret `SLACK_SIGNING_SECRET`. To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _Basic Information_ and scroll to the section _App Credentials_ and click show button and copy the _Signing Secret_ and paste into terminal.
+7. The script prompts you to enter value for `SLACK_BOT_TOKEN`. To enter this value open your configuration page by first navigating to the [apps list](https://api.slack.com/apps) and then selecting the app you created in previous section, click _OAuth & Permissions_ in the left hand menu, then copy the value in _Bot User OAuth Token_ and paste into terminal.
+
+<img src="./docs/images/botToken.png" width=60% height=60% alt="Slack Bot Token" style="padding-left: 100px">
+
+8. The script prompts you for slack signing secret `SLACK_SIGNING_SECRET`. To enter this value open your apps configuration page by first navigating to the [apps list](https://api.slack.com/apps) and then selecting the app you created in previous section, click _Basic Information_ and scroll to the section _App Credentials_ and click show button and copy the _Signing Secret_ and paste into terminal.
+
+<img src="./docs/images/signingSecret.png" width=60% height=60% alt="Signing Secret" style="padding-left: 100px">
 
 Note: As ready to fly performs calls from Salesforce to Slack, we've modified the Salesforce Slack Starter Kit script to deploy a remote site setting and a custom metadata type record used for callouts. We've also included the setup of some sample data.
 
@@ -110,8 +120,11 @@ Note: As ready to fly performs calls from Salesforce to Slack, we've modified th
 
 This is the final step, you will need to enter the current Heroku Instance url in Slack App.
 
-1.  To enter this value open your apps configuration page from [this list](https://api.slack.com/apps), click _App Manifest_. Find the `request_url` fields (there will be two to update) in the manifest and modify it to replace `heroku-app` with your actual heroku domain name. Note at the end of this step your url should look like `https://<heroku-domain>.herokuapp.com/slack/events`.
-2.  Once done that, you'll be prompted to verify the events endpoint. Click on 'verify'. You're ready to navigate to the app home!
+1.  To enter this value open your apps configuration page from [apps list](https://api.slack.com/apps) and then selecting the app you created in previous section, click _App Manifest_. Find the `request_url` fields (there will be two to update) in the manifest and modify it to replace `heroku-app` with your actual heroku domain name obtained from step 6 in previous section. Note at the end of this step your url should look like `https://<heroku-domain>.herokuapp.com/slack/events`.
+
+<img src="./docs/images/appManifest.png" width=60% height=60% alt="Signing Secret" style="padding-left: 100px">
+
+2.  Once you have done that, you'll be prompted to verify the events endpoint. Scroll to the top of page and click on 'verify'. You're ready to navigate to the app home!
 
 ## How to Build and Deploy Code
 
