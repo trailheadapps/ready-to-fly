@@ -44,7 +44,7 @@ const setupDefaultNonScratchOrg = async () => {
         )
     );
 
-    if (!deployResult.result || deployResult.result.error) {
+    if (!deployResult.result || deployResult.result.status === 'Failed') {
         throw new Error(
             'Source deployment failed ' + JSON.stringify(deployResult)
         );
