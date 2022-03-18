@@ -117,7 +117,7 @@ public with sharing class TravelRequestTriggerHandler {
             message.destination = request.Destination__c;
             message.startDate = request.Start_Date__c;
             message.endDate = request.End_Date__c;
-            message.cost = request.Cost__c;
+            message.cost = request.Cost__c.intvalue();
             message.status = request.Status__c;
             message.ownerName = usersById.get(request.OwnerId).Name;
             message.userId = slackUserId;
