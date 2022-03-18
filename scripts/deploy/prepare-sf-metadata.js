@@ -41,12 +41,6 @@ const prepareSfMetadata = async (pubkey) => {
     );
     sh.sed(
         '-i',
-        /{HEROKUINSTANCE}/,
-        sh.env.HEROKU_APP_NAME,
-        `${sfProjectFolder}/customMetadata/Bolt_App_Config.BoltAppConfigHeroku.md-meta.xml`
-    );
-    sh.sed(
-        '-i',
         /{HMACKEY}/,
         sh.env.HMAC_KEY,
         `${sfProjectFolder}/customMetadata/Bolt_App_Config.BoltAppConfigHeroku.md-meta.xml`
@@ -55,7 +49,7 @@ const prepareSfMetadata = async (pubkey) => {
         '-i',
         /{HEROKUINSTANCE}/,
         sh.env.HEROKU_APP_NAME,
-        `${sfProjectFolder}/remoteSiteSettings/boltApp.remoteSite-meta.xml`
+        `${sfProjectFolder}/namedCredentials/boltApp.namedCredential-meta.xml`
     );
     sh.sed(
         '-i',
