@@ -23,7 +23,6 @@ public class SlackService {
         if (config == null) {
             if (Test.isRunningTest()) {
                 return new Bolt_App_Config__mdt(
-                    URL__c = 'http://fakeslackendpoint.com',
                     HMACKey__c = 'AKeCiu6WIcy1YtbTnvtEULZraPEuBFQh'
                 );
             } else {
@@ -45,7 +44,7 @@ public class SlackService {
         );
 
         HttpRequest request = new HttpRequest();
-        request.setEndpoint(record.URL__c + '/salesforce/message');
+        request.setEndpoint('callout:boltApp/salesforce/message');
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json;charset=UTF-8');
         request.setHeader(

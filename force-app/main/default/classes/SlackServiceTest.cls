@@ -57,7 +57,7 @@ private with sharing class SlackServiceTest {
             );
 
             System.assertEquals(
-                record.URL__c + '/salesforce/message',
+                'callout:boltApp/salesforce/message',
                 req.getEndpoint()
             );
             System.assertEquals('POST', req.getMethod());

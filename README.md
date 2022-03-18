@@ -114,7 +114,7 @@ node scripts/deploy.js
 
 <img src="./docs/images/signingSecret.png" width=60% height=60% alt="Signing Secret" style="padding-left: 100px">
 
-Note: As ready to fly performs calls from Salesforce to Slack, we've modified the Salesforce Slack Starter Kit script to deploy a remote site setting and a custom metadata type record used for callouts. We've also included the setup of some sample data.
+Note: As ready to fly performs calls from Salesforce to Slack, we've modified the Salesforce Slack Starter Kit script to deploy a named credential and a custom metadata type record used for callouts. We've also included the setup of some sample data.
 
 ### Setting Heroku Instance in your Slack App
 
@@ -170,8 +170,7 @@ $ ngrok http 3000
 -   Your manifest file request URLs
 -   The HEROKU_URL environment variable in your .env file
 -   The Callback URL for the connected app that’s used for authorization in Salesforce - simply add the ngrok URL in a new line
--   Add a new remote site setting that contains the ngrok URL, as it’s the one that we’ll use to callout from Salesforce to Slack
--   Modify the BoltAppConfigHeroku custom metadata type record URL\_\_c, as it’s used in the Apex logic to make the callout
+-   Modify the boltApp named credential to contain the ngrok URL, as it’s the one that we use to callout from Salesforce to Slack
 
 7. Now you are prepared to run the app locally! In another terminal different from the one in which you’re running ngrok, execute `node app.js` from the project folder. You can then make changes to the code and restart the app as many times as you want.
 

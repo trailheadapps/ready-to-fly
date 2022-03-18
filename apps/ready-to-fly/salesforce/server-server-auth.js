@@ -31,7 +31,9 @@ class ServerToServerAuth {
             return this.conn;
         } catch (e) {
             throw new Error(
-                `Can't establish connection with Salesforce, reason: ${e.message}`
+                `Can't establish connection with Salesforce, reason: ${
+                    e.message
+                } ${JSON.stringify(e.body)}`
             );
         }
     }
