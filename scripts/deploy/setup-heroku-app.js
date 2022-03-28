@@ -14,7 +14,7 @@ const setupHerokuApp = () => {
     );
     // Check user is correctly logged into Heroku
     const whoAmI = sh.exec('heroku whoami', { silent: true });
-    if (whoAmI.stderr) {
+    if (whoAmI.stderr && whoAmI.stderr.includes('not logged in')) {
         throw new Error(
             'Not logged into Heroku. Run heroku login to authenticate yourself.'
         );
