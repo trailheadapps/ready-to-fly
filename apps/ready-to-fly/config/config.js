@@ -23,11 +23,16 @@ requiredEnvVars.forEach((envVar) => {
 
 const defaultSalesforceApiVersion = '54.0';
 
+const privateKeyBase64Decoded = Buffer.from(
+    process.env.PRIVATE_KEY,
+    'base64'
+).toString('ascii');
+
 const salesforce = {
     clientId: process.env.SF_CLIENT_ID,
     clientSecret: process.env.SF_CLIENT_SECRET,
     herokuUrl: process.env.HEROKU_URL,
-    privateKey: process.env.PRIVATE_KEY,
+    privateKey: privateKeyBase64Decoded,
     loginUrl: process.env.SF_LOGIN_URL,
     username: process.env.SF_USERNAME,
     apiVersion: process.env.SF_API_VERSION || defaultSalesforceApiVersion

@@ -53,6 +53,10 @@ const setupHerokuApp = () => {
     );
 
     log('*** Writing .env file for local development');
+    // Base64 encode the PRIVATE_KEY
+    const privateKeyBase64Encode = Buffer.from(sh.env.PRIVATE_KEY).toString(
+        'base64'
+    );
     // Env variables for Slack Auth
     fs.writeFileSync('.env', ''); // empty the .env file for fresh write
     fs.appendFileSync(
@@ -85,7 +89,7 @@ const setupHerokuApp = () => {
     log('*** Pushing app to Heroku');
     log('*** Setting remote configuration parameters');
     sh.exec(
-        `heroku config:set PRIVATE_KEY="${sh.env.PRIVATE_KEY}" -a ${sh.env.HEROKU_APP_NAME}`,
+        `heroku config:set PRIVATE_KEY=${privateKeyBase64Encode} -a ${sh.env.HEROKU_APP_NAME}`,
         { silent: true }
     );
     // Needed by buildpack
