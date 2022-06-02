@@ -78,13 +78,7 @@ const setupHerokuApp = () => {
     );
     fs.appendFileSync('.env', 'AES_KEY=' + sh.env.AES_KEY + '\r\n');
     fs.appendFileSync('.env', 'HMAC_KEY=' + sh.env.HMAC_KEY + '\r\n');
-    fs.appendFileSync(
-        '.env',
-        'PRIVATE_KEY=' +
-            '"' +
-            sh.env.PRIVATE_KEY.replace(/(\r\n|\r|\n)/g, '\\n') +
-            '"'
-    );
+    fs.appendFileSync('.env', 'PRIVATE_KEY=' + privateKeyBase64Encode);
 
     log('*** Pushing app to Heroku');
     log('*** Setting remote configuration parameters');
