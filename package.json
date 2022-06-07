@@ -15,7 +15,7 @@
         "@salesforce/eslint-plugin-lightning": "^1.0.0",
         "eslint": "^8.8.0",
         "eslint-plugin-import": "^2.25.4",
-        "husky": "^7.0.0",
+        "husky": "^8.0.1",
         "lerna": "^4.0.0",
         "lint-staged": "^12.1.6",
         "prettier": "^2.5.1",
