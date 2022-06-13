@@ -8,5 +8,5 @@
     "name": "ready-to-fly",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "54.0"
+    "sourceApiVersion": "55.0"
 }
