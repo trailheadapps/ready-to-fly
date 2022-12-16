@@ -9,9 +9,8 @@ const { authWithSalesforce } = require('../middleware/salesforce-auth');
 const config = require('../config/config');
 
 const salesforceMessageHandler = async (req, res) => {
-    // Note:if using HTTPReceiver instead of ExpressReceiver, compute the body with raw-body as follows:
-    // const rawBody = await getRawBody(req);
-    // const body = JSON.parse(rawBody.toString());
+    // Note:if using HTTPReceiver instead of ExpressReceiver, compute the body
+    // as explained in https://github.com/slackapi/bolt-js/issues/516
 
     // Get Salesforce signature
     const signature = req.headers['x-salesforce-signature'];
