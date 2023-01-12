@@ -11,7 +11,7 @@ private with sharing class SlackServiceTest {
         Test.stopTest();
 
         // THEN
-        System.assert(true, 'No exception expected');
+        Assert.isTrue(true, 'No exception expected');
     }
 
     @isTest
@@ -27,17 +27,17 @@ private with sharing class SlackServiceTest {
             Test.startTest();
             SlackService.postMessages(message);
             Test.stopTest();
-            System.assert(false, 'Exception expected');
+            Assert.isTrue(false, 'Exception expected');
         } catch (Exception e) {
             // THEN
-            System.assert(
+            Assert.isTrue(
                 e instanceof SlackService.SlackException,
                 'SlackException exception expected'
             );
             String expectedMessage =
                 'Failed to post messages to Slack: HTTP500 Failure - ' +
                 message;
-            System.assertEquals(
+            Assert.areEqual(
                 e.getMessage(),
                 expectedMessage,
                 'Messages are not equal'
@@ -56,16 +56,16 @@ private with sharing class SlackServiceTest {
                 Blob.valueOf(record.HMACKey__c)
             );
 
-            System.assertEquals(
+            Assert.isTrueEquals(
                 'callout:boltApp/salesforce/message',
                 req.getEndpoint()
             );
-            System.assertEquals('POST', req.getMethod());
-            System.assertEquals(
+            Assert.isTrueEquals('POST', req.getMethod());
+            Assert.isTrueEquals(
                 'application/json;charset=UTF-8',
                 req.getHeader('Content-Type')
             );
-            System.assertEquals(
+            Assert.isTrueEquals(
                 EncodingUtil.base64Encode(signature),
                 req.getHeader('x-salesforce-signature')
             );
