@@ -6,11 +6,11 @@ public class SlackService {
         if (response.getStatusCode() != 200) {
             throw new SlackException(
                 'Failed to post messages to Slack: HTTP' +
-                response.getStatusCode() +
-                ' ' +
-                response.getStatus() +
-                ' - ' +
-                response.getBody()
+                    response.getStatusCode() +
+                    ' ' +
+                    response.getStatus() +
+                    ' - ' +
+                    response.getBody()
             );
         }
     }
