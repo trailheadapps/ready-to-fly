@@ -56,16 +56,16 @@ private with sharing class SlackServiceTest {
                 Blob.valueOf(record.HMACKey__c)
             );
 
-            Assert.isTrueEquals(
+            Assert.areEqual(
                 'callout:boltApp/salesforce/message',
                 req.getEndpoint()
             );
-            Assert.isTrueEquals('POST', req.getMethod());
-            Assert.isTrueEquals(
+            Assert.areEqual('POST', req.getMethod());
+            Assert.areEqual(
                 'application/json;charset=UTF-8',
                 req.getHeader('Content-Type')
             );
-            Assert.isTrueEquals(
+            Assert.areEqual(
                 EncodingUtil.base64Encode(signature),
                 req.getHeader('x-salesforce-signature')
             );
