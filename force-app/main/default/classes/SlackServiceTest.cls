@@ -27,7 +27,7 @@ private with sharing class SlackServiceTest {
             Test.startTest();
             SlackService.postMessages(message);
             Test.stopTest();
-            Assert.isTrue(false, 'Exception expected');
+            Assert.fail('Exception expected');
         } catch (Exception e) {
             // THEN
             Assert.isInstanceOfType(
