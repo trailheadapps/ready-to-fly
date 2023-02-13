@@ -30,16 +30,17 @@ private with sharing class SlackServiceTest {
             Assert.isTrue(false, 'Exception expected');
         } catch (Exception e) {
             // THEN
-            Assert.isTrue(
-                e instanceof SlackService.SlackException,
+            Assert.isInstanceOfType(
+                e,
+                SlackService.SlackException.class,
                 'SlackException exception expected'
             );
             String expectedMessage =
                 'Failed to post messages to Slack: HTTP500 Failure - ' +
                 message;
             Assert.areEqual(
-                e.getMessage(),
                 expectedMessage,
+                e.getMessage(),
                 'Messages are not equal'
             );
         }
