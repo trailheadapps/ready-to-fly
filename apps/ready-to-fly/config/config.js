@@ -21,7 +21,7 @@ requiredEnvVars.forEach((envVar) => {
     }
 });
 
-const defaultSalesforceApiVersion = '56.0';
+const defaultSalesforceApiVersion = '57.0';
 
 const privateKeyBase64Decoded = Buffer.from(
     process.env.PRIVATE_KEY,
