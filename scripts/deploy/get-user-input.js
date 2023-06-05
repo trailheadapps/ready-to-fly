@@ -26,13 +26,13 @@ const promptBasicInfo = async (selectedSfOrgType) => {
             {
                 type: 'input',
                 name: 'devhub',
-                message: 'Existing SFDX DevHub Alias',
+                message: 'Existing DevHub Org CLI Alias',
                 initial: getDefaultDevHub
             },
             {
                 type: 'input',
                 name: 'scratchorg',
-                message: 'SFDX Scratch Org Alias',
+                message: 'Scratch Org CLI Alias',
                 initial: 'scratchorg'
             }
         ];
@@ -41,7 +41,7 @@ const promptBasicInfo = async (selectedSfOrgType) => {
             {
                 type: 'input',
                 name: 'defaultusername',
-                message: 'Existing SFDX Default Org Alias',
+                message: 'Existing Default Org CLI Alias',
                 initial: getDefaultOrg
             }
         ];

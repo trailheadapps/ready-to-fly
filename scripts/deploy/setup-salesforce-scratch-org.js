@@ -18,7 +18,7 @@ const createScratchOrg = async () => {
     log('*** Creating scratch org');
     const scratchOrgResult = JSON.parse(
         sh.exec(
-            `sfdx force:org:create -s -f config/project-scratch-def.json -a ${sh.env.SF_SCRATCH_ORG} -d 30 -v ${sh.env.SF_DEV_HUB} --json`,
+            `sf org create scratch -d -f config/project-scratch-def.json -a ${sh.env.SF_SCRATCH_ORG} -y 30 -v ${sh.env.SF_DEV_HUB} --json`,
             { silent: true }
         )
     );
@@ -29,7 +29,7 @@ const createScratchOrg = async () => {
         );
     }
     const userData = JSON.parse(
-        sh.exec('sfdx force:org:display --json', { silent: true })
+        sh.exec('sf org display --json', { silent: true })
     );
     sh.env.SF_USERNAME = userData.result.username;
     sh.env.ORGID = userData.result.id;
@@ -41,7 +41,7 @@ const setupScratchOrg = async () => {
     log('*** Deploying Salesforce metadata');
     const deployResult = JSON.parse(
         sh.exec(
-            `sfdx force:source:push -u ${sh.env.SF_USERNAME} -w 10 --json`,
+            `sf project deploy start -o ${sh.env.SF_USERNAME} -w 10 --json`,
             { silent: true }
         )
     );
