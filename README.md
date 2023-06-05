@@ -43,7 +43,7 @@ git clone https://github.com/trailheadapps/ready-to-fly
 2. Authenticate to your Salesforce org and set as default:
 
 ```
-sfdx auth:web:login --setdefaultusername -a mydevorg
+sf org login web --set-default -a mydevorg
 ```
 
 3. Login to your Heroku Account
@@ -84,7 +84,7 @@ git clone https://github.com/trailheadapps/ready-to-fly
 2. Authenticate to your Salesforce org that has DevHub enabled
 
 ```
-sfdx auth:web:login --setdefaultdevhubusername -a DevHub
+sf org login web --set-default-dev-hub -a DevHub
 ```
 
 3. Login to your Heroku Account
@@ -130,11 +130,11 @@ This is the final step, you will need to enter the current Heroku Instance url i
 
 ### Building Salesforce app using a Scratch Org
 
--   For Salesforce metadata synchronization use `sfdx force:source:pull` to retrieve and `sfdx force:source:push` to deploy metadata from orgs to local project folder `force-app`
+-   For Salesforce metadata synchronization use `sf project retrieve start` to retrieve and `sf project deploy start` to deploy metadata from orgs to local project folder `force-app`
 
 ### Building Salesforce App Using Non-Scratch Org
 
--   For Salesforce metadata synchronization in developer orgs use `sfdx force:source:retrieve -p force-app/main/default` to retrieve and `sfdx force:source:deploy -p force-app/main/default` to deploy metadata from orgs to local project folder `force-app`
+-   For Salesforce metadata synchronization in developer orgs use `sf project retrieve start -d force-app/main/default` to retrieve and `sf project deploy start -d force-app/main/default` to deploy metadata from orgs to local project folder `force-app`
 
 ### Building and deploying Bolt Node.js app
 

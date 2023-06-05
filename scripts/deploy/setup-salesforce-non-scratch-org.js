@@ -12,14 +12,14 @@ const setupNonScratchOrgUserContext = async () => {
         )}`
     );
     const userData = JSON.parse(
-        sh.exec('sfdx force:org:display --json', { silent: true })
+        sh.exec('sf org display --json', { silent: true })
     );
     sh.env.SF_USERNAME = userData.result.username;
     sh.env.ORGID = userData.result.id;
     // Check if the currently authorized org is Sandbox or Production
     const organization = JSON.parse(
         sh.exec(
-            'sfdx force:data:soql:query -q "SELECT IsSandbox FROM Organization LIMIT 1" --json',
+            'sf data query -q "SELECT IsSandbox FROM Organization LIMIT 1" --json',
             { silent: true }
         )
     );
@@ -39,7 +39,7 @@ const setupDefaultNonScratchOrg = async () => {
     log('*** Deploying Salesforce metadata');
     const deployResult = JSON.parse(
         sh.exec(
-            `sfdx force:source:deploy -u ${sh.env.SF_USERNAME} -p force-app/main/default -w 10 --json`,
+            `sf project deploy start -d force-app/main/default -o ${sh.env.SF_USERNAME} -w 10 --json`,
             { silent: true }
         )
     );

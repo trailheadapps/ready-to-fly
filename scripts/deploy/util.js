@@ -25,13 +25,13 @@ const generateUniqueAppName = (input) => {
 
 const getDefaultDevHub = () => {
     const orgs = JSON.parse(
-        sh.exec('sfdx config:get defaultdevhubusername --json', {
+        sh.exec('sf config get target-dev-hub --json', {
             silent: true
         })
     );
     if (orgs.result.length === 0) {
         throw new Error(
-            'No default DevHub org configured. Please use "sfdx auth:web:login --setdefaultdevhubusername" and authorize a Salesforce Developer org with DevHub Enabled'
+            'No default DevHub org configured. Please use "sf org login web --set-default-dev-hub" and authorize a Salesforce Developer org with DevHub Enabled'
         );
     }
     return orgs.result[0].value;
@@ -39,13 +39,13 @@ const getDefaultDevHub = () => {
 
 const getDefaultOrg = () => {
     const orgs = JSON.parse(
-        sh.exec('sfdx config:get defaultusername --json', {
+        sh.exec('sf config get target-org --json', {
             silent: true
         })
     );
     if (orgs.result.length === 0) {
         throw new Error(
-            'No default Org configured. Please use "sfdx auth:web:login --setdefaultusername" and authorize a Salesforce Developer org'
+            'No default Org configured. Please use "sf org login web --set-default" and authorize a Salesforce Developer org'
         );
     }
     return orgs.result[0].value;
@@ -74,7 +74,7 @@ const assignPermissionset = async () => {
     // Assign permission set to user
     const assignPermissionset = JSON.parse(
         sh.exec(
-            `sfdx force:user:permset:assign --permsetname Salesforce_Slack_App_Admin,Ready_to_Fly -u ${sh.env.SF_USERNAME} --json`,
+            `sf org assign permset -n Salesforce_Slack_App_Admin,Ready_to_Fly -o ${sh.env.SF_USERNAME} --json`,
             { silent: true }
         )
     );
@@ -91,7 +91,7 @@ const loadSampleData = async () => {
     // Load sample data
     const loadSampleData = JSON.parse(
         sh.exec(
-            `sfdx force:apex:execute --apexcodefile data/setup.apex -u ${sh.env.SF_USERNAME} --json`,
+            `sf apex run --file data/setup.apex -o ${sh.env.SF_USERNAME} --json`,
             { silent: true }
         )
     );
