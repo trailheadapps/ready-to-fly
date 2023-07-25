@@ -15,7 +15,7 @@ on:
 jobs:
     # Dummy job used to skip CI run on automated PRs
     skip-ci:
-        if: "github.actor == 'trailheadapps-bot'"
+        if: github.actor == 'trailheadapps-bot'
         runs-on: trailheadapps-Ubuntu
         steps:
             - name: Noop
@@ -24,7 +24,7 @@ jobs:
 
     # Formatting and linting only runs on human-submitted PRs
     format-lint:
-        if: "github.actor != 'trailheadapps-bot'"
+        if: github.actor != 'trailheadapps-bot'
         runs-on: trailheadapps-Ubuntu
         steps:
             # Checkout the source code
@@ -64,7 +64,7 @@ jobs:
     # - minor updates on dev dependencies
     dependabot-auto-merge:
         # Only run for Dependabot PRs
-        if: ${{ github.actor == 'dependabot[bot]' }}
+        if: github.actor == 'dependabot[bot]'
         runs-on: trailheadapps-Ubuntu
         needs: format-lint
         permissions:
@@ -88,7 +88,7 @@ jobs:
               run: echo "::notice ::auto-merge conditions satisfied"
 
             - name: 'Approve and merge PR'
-              if: ${{ steps.auto-merge.conclusion == 'success' }}
+              if: steps.auto-merge.conclusion == 'success'
               run: |
                   gh pr review --approve "$PR_URL"
                   gh pr merge --auto --rebase "$PR_URL"
@@ -99,7 +99,7 @@ jobs:
     scratch-org-test:
         runs-on: trailheadapps-Ubuntu
         needs: format-lint
-        if: ${{ github.actor != 'dependabot[bot]' }}
+        if: github.actor != 'dependabot[bot]'
         steps:
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
